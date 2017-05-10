@@ -76,3 +76,35 @@ Gmail：属性设置不同于其他邮箱
  * @author Mr-hang
  *
  */
+ 
+ 
+ 
+ 
+ stmp支持的属性
+ mail.stmp.host
+String
+SMTP服务器地址，如smtp.sina.com.cn
+mail.stmp.port
+int
+SMTP服务器端口号，默认为25
+mail.stmp.auth
+boolean
+SMTP服务器是否需要用户认证，默认为false
+mail.stmp.user
+String
+SMTP默认的登陆用户名
+mail.stmp.from
+String
+默认的邮件发送源地址
+mail.stmp.socketFactory.class
+String
+socket工厂类类名，通过设置该属性可以覆盖提供者默认的实现，必须实现javax.NET.SocketFactory接口
+mail.stmp.socketFactory.port
+int
+指定socket工厂类所用的端口号，如果没有规定，则使用默认的端口号
+mail.smtp.socketFactory.fallback
+boolean
+设置为true时，当使用指定的socket类创建socket失败后，将使用Java.net.Socket创建socket，默认为true
+mail.stmp.timeout
+int
+I/O连接超时时间，单位为毫秒，默认为永不超时
