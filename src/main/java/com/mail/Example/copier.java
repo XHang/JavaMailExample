@@ -12,6 +12,7 @@ import javax.mail.URLName;
 import javax.mail.internet.MimeMultipart;
 
 import com.main.Authenticator.AuthenticatorInherit;
+import com.main.Authenticator.UserInfoUitl;
 
 
 public class copier {
@@ -42,7 +43,7 @@ public class copier {
 			    Store store = session.getStore(url);
 			    //根据用户名和密码连接到邮箱
 			    System.out.println("正在连接IMG......");
-			    store.connect("q1083594261", "qq1083594261");
+			    store.connect(UserInfoUitl.getUserName(), UserInfoUitl.getpassword());
 			    System.out.println("成功连接");
 			    
 			    //获取邮箱里面的文件夹实例
@@ -99,7 +100,7 @@ public class copier {
         Store store = session.getStore("imap");  
           
         // 连接邮件服务器  
-        store.connect("hehe", "password");  
+        store.connect(UserInfoUitl.getUserName(), UserInfoUitl.getpassword());  
           
         // 获得收件箱  
         Folder folder = store.getFolder("INBOX");  

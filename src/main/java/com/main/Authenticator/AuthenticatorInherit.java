@@ -7,7 +7,7 @@ public class AuthenticatorInherit extends Authenticator{
 
 	@Override
 	protected PasswordAuthentication getPasswordAuthentication() {
-		PasswordAuthentication passwordAuthentication=new PasswordAuthentication("法克", "ship!");
+		PasswordAuthentication passwordAuthentication=new PasswordAuthentication(UserInfoUitl.getUserName(), UserInfoUitl.getpassword());
 		return passwordAuthentication;
 	}
 
