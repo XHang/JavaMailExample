@@ -53,10 +53,12 @@ public class copier {
 			    	sourceFolder.close(false);
 			    	store.close();
 			    }
-			    Folder destFolder=store.getFolder("已删除");
+			    Folder destFolder=store.getFolder("（づ￣3￣）づ╭❤～");
 			   if(!(destFolder.exists())){
 				   //这种创建的文件夹可以包含其他子文件夹
-				   destFolder.create(Folder.HOLDS_MESSAGES);
+				   if(!destFolder.create(Folder.HOLDS_MESSAGES)){
+					   System.out.println("创建文件夹失败");
+				   }
 			   }
 			   //从源文件取得信息序号1到1的邮件信息集合。
 			   Message[] msgs=sourceFolder.getMessages(1, 1);
