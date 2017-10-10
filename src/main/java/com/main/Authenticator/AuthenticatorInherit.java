@@ -3,17 +3,23 @@ package com.main.Authenticator;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 /**
- * 用户名和密码的包装类-暂且不使用
+ * 用户名和密码的包装类
  * @author Mr-hang
  *
  */
-@Deprecated
 public class AuthenticatorInherit extends Authenticator{
 
+	private String user; 
+	private String password;
 	@Override
 	protected PasswordAuthentication getPasswordAuthentication() {
-		PasswordAuthentication passwordAuthentication=new PasswordAuthentication(UserInfoUitl.getUserName(), UserInfoUitl.getpassword());
+		PasswordAuthentication passwordAuthentication=new PasswordAuthentication(user, password);
 		return passwordAuthentication;
+	}
+	public AuthenticatorInherit(String user, String password) {
+		super();
+		this.user = user;
+		this.password = password;
 	}
 
 }
