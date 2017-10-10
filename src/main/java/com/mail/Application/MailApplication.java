@@ -1,7 +1,8 @@
 package com.mail.Application;
 
 import java.util.Properties;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -76,7 +77,6 @@ public class MailApplication {
 	}
 	/**
 	 * 发送邮件到其他邮箱
-	 * TODO 未测试
 	 * @param host  发送方的邮箱服务器
 	 * @param user 发送方用户名
 	 * @param password  发送方密码
@@ -86,12 +86,14 @@ public class MailApplication {
 	 * @throws Exception 
 	 */
 	public static void sendMail(String host,String user,String password,String descMailAddress,String text,String title) throws Exception{
+			String fromMailAddress = getMailAddress(host,user);
 			System.out.println("正在准备发送邮件");
+			System.out.println("发送方是"+fromMailAddress);
 			title = removeCRLF(title);
 			Session session = null;
 			session = JavaMailUItl.getSTMPConnection(user, password, host, false);
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(user);
+			message.setFrom(fromMailAddress);
 			//指定收件人类型和地址
 			message.setRecipients(Message.RecipientType.TO, descMailAddress);
 			message.setSubject(title, "utf-8");
@@ -99,6 +101,22 @@ public class MailApplication {
 			System.out.println("邮件创建成功，正在发送");
 			Transport.send(message);
 			System.out.println("邮件发送成功");
+	}
+	/**
+	 * 由于用户名不带后面的@xxx.com标志，但是主机名里面有
+	 * 所以讲主机和用户名整合，提取出发送方的邮件地址
+	 * TODO 可能会不生效 ，不生效的结果可能是550 invalid user 错误
+	 * @param host
+	 * @param user
+	 * @return
+	 * smtp.163.com
+	 */
+	private static String getMailAddress(String host,String user){
+		Pattern pattern = Pattern.compile("\\w+.(com|cn)");
+		Matcher matcher = pattern.matcher(host);
+		matcher.find();
+		String suffix = matcher.group();
+		return user+"@"+suffix;
 	}
 	/**
 	 * 为字符串去除换行符

@@ -52,7 +52,8 @@ public class JavaMailUItl {
 		  Properties props = new Properties();                    // 参数配置
 	      props.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）
 	      props.setProperty("mail.smtp.auth", "true");            // 需要请求认证
-	      Session session = Session.getInstance(props, new AuthenticatorInherit(user,password));
+	      props.setProperty("mail.host", serverHost);
+	      Session session = Session.getDefaultInstance(props, new AuthenticatorInherit(user,password));
 	      return session;
 	}
 	

@@ -17,12 +17,12 @@ public class MailApplicationTest {
 	
 	@Test
 	public void testSendMail() throws Exception{
-		String host = "smtp://smtp.163.com";
+		String host = "smtp.163.com";
 		String user = UserInfoUitl.getUserName();
 		String password = UserInfoUitl.getpassword();
 		String descMailAddress = "1083594261@qq.com";
 		String title = "first Mail";
-		String text = "越过长城，拥抱世界";
+		String text = "越过长城，拥抱世界,fuck";
 		MailApplication.sendMail(host, user, password, descMailAddress, text, title);
 	}
 }
